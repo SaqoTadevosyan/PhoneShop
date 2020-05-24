@@ -1,0 +1,9 @@
+.logo{
+    display: contents;
+    
+}
+
+.header33{
+    display: flex;
+    justify-content: space-around;
+}

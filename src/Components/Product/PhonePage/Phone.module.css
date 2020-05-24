@@ -1,0 +1,263 @@
+/* Basic Styling */
+
+
+.container64 {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+  display: flex;
+}
+
+/* Columns */
+.left_column {
+  width: 65%;
+  position: relative;
+}
+
+.right_column {
+  width: 35%;
+  margin-top: 60px;
+}
+
+
+/* Left Column */
+.left_column img {
+  max-width: 700px;
+  max-height: 700px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.left_column img.active {
+  opacity: 1;
+}
+
+
+/* Right Column */
+
+/* Product Description */
+.product_description {
+  border-bottom: 1px solid #E1E8EE;
+  margin-bottom: 20px;
+}
+.product_description span {
+  font-size: 12px;
+  color: #358ED7;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.product_description h1 {
+  font-weight: 300;
+  font-size: 52px;
+  color: #43484D;
+  letter-spacing: -2px;
+}
+.product_description p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #86939E;
+  line-height: 24px;
+}
+
+/* Product Configuration */
+.product_color span,
+.cable_config span {
+  font-size: 14px;
+  font-weight: 400;
+  color: #86939E;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+/* Product Color */
+.product_color {
+  margin-bottom: 30px;
+}
+
+.color_choose div {
+  display: inline-block;
+}
+
+.color_choose input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  margin: -1px 4px 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.color_choose input[type="radio"] + label span {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: -1px 4px 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.color_choose input[type="radio"] + label span {
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.33);
+}
+
+
+.color_choose input[type="radio"]:checked + label span {
+  
+  background-image: url(../../../images/check-icn.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Cable Configuration */
+.cable_choose {
+  margin-bottom: 20px;
+}
+
+.cable_choose button {
+  border: 2px solid #E1E8EE;
+  border-radius: 6px;
+  padding: 13px 20px;
+  font-size: 14px;
+  color: #5E6977;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all .5s;
+}
+
+.cable_choose button:hover,
+.cable_choose button:active,
+.cable_choose button:focus {
+  border: 2px solid #86939E;
+  outline: none;
+}
+
+.cable_config {
+  border-bottom: 1px solid #E1E8EE;
+  margin-bottom: 20px;
+}
+
+.cable_config a {
+  color: #358ED7;
+  text-decoration: none;
+  font-size: 12px;
+  position: relative;
+  margin: 10px 0;
+  display: inline-block;
+}
+.cable_config a:before {
+  content: "?";
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  border: 2px solid rgba(53, 142, 215, 0.5);
+  display: inline-block;
+  text-align: center;
+  line-height: 16px;
+  opacity: 0.5;
+  margin-right: 5px;
+}
+
+/* Product Price */
+.product_price {
+  display: flex;
+  align-items: center;
+}
+
+.product_price span {
+  font-size: 26px;
+  font-weight: 300;
+  color: #43474D;
+  margin-right: 20px;
+}
+
+.cart_btn11 {
+  display: inline-block;
+  background-color: #7DC855;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 12px 30px;
+  transition: all .5s;
+}
+.cart_btn11:hover {
+  background-color: #64af3d;
+}
+.noshow{
+  display: none;
+  opacity: 0;
+}
+.selectError{
+  color: red;
+}
+
+
+/* Responsive */
+@media (max-width: 940px) {
+  .container64 {
+    flex-direction: column;
+    margin-top: 60px;
+  }
+
+  .left_column,
+  .right_column {
+    width: 100%;
+  }
+
+  .left_column img {
+    width: 300px;
+    right: 0;
+    top: -65px;
+    left: initial;
+  }
+}
+
+@media (max-width: 535px) {
+  .left_column img {
+    width: 220px;
+    top: -85px;
+  }
+}
+
+.phone_info{
+  height: 300px;
+  overflow: hidden;
+  overflow-y: scroll;
+  
+}
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #D62929;
+}
+
+.imageSelect{
+  width: 100px;
+  position: absolute;
+  bottom: 0;
+  height: 100px;
+  border: 3px black solid;
+}
