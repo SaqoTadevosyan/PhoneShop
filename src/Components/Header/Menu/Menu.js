@@ -11,6 +11,7 @@ class Menu extends Component {
         <NavLink to="/About">About</NavLink>
         <NavLink to="/Contact">Contact</NavLink>
       </div>
+       
     );
   }
 }
