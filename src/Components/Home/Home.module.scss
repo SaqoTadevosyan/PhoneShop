@@ -1,0 +1,62 @@
+$primary-color: #333;
+$secondary-color: #444;
+$overlay-color: rgba(0, 0, 0, 0.7);
+.container {
+    margin: 20px 0;
+  display: flex;
+  padding-top: 50px;
+  justify-content: center;
+  div {
+    width: 50%;
+    h1 {
+      font-size: 4rem;
+      color: $primary-color;
+      line-height: 1.3;
+    }
+    a {
+      color: #444;
+      text-decoration: none;
+      font-weight: 500;
+    }
+  }
+  
+}
+.section_b {
+    position: relative;
+    background: url(https://www.oficinadanet.com.br/imagens/post/25420/top-10-smartphones-de-1000-ate-1500-reais.jpg)
+      no-repeat bottom center/cover;
+    height: 600px;
+    .overlay {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: $overlay-color;
+      }
+      .section_b_inner {
+        color: #fff;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: auto;
+        max-width: 860px;
+        padding: 5rem 0;
+      }
+      h2{
+        font-size: 5rem;
+        margin-top: 1rem;
+        color: #777777;
+    font-family: "Roboto", sans-serif;
+    width: 80%;
+    text-transform: uppercase;
+    line-height: 1.3;
+    font-weight: 700;
+    margin: 0 0 10px;
+    letter-spacing: 1px;
+    margin-left: 2px;
+      }
+  }

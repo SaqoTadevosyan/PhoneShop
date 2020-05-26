@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import style from "./filter.module.scss"
 import Products from "../../Product/Products";
 
 import OurProducts from "../../../data";
@@ -25,7 +24,7 @@ class ProductShow extends Component {
     
     
 return(
-<div className={this.props.viewType=="list" ?  style.app:null}>
+<div className="App">
 { this.state.idlist.map((it) => {
   
    return   this.state.product.map((elem) => {

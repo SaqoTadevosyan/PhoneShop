@@ -1,15 +1,8 @@
 import React, { Component } from "react";
-import style from "./filter.module.scss";
+import filterStyle from "./filter.module.css";
 import Data from "../../../data";
 import ProductShow from "./ProductShow";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import TextField from "@material-ui/core/TextField";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
 
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 class Filter extends Component {
   state = {
     companyList: [],
@@ -65,9 +58,9 @@ class Filter extends Component {
         return id.push(Phone.id);
       }
       if (
-        this.state.maxPrice &&
-        !this.state.minPrice &&
-        this.state.maxPrice >= Phone.configurationAndPrice[0][1]
+        this.state.maxPrice > 0 &&
+        this.state.minPrice < 0 &&
+        this.state.maxPrice <= Phone.configurationAndPrice[0][1]
       ) {
         return id.push(Phone.id);
       }
@@ -212,7 +205,7 @@ class Filter extends Component {
     let tmp = this.state.selectedCompany;
 
     if (company.target.checked == true) {
-      tmp.push(company.target.name);
+      tmp.push(company.target.value);
       this.setState({ selectedCompany: tmp }, () => {
         this.approvedIdCreate();
       });
@@ -220,7 +213,7 @@ class Filter extends Component {
     }
     let companyArray = [];
     companyArray = this.state.selectedCompany;
-    let unCheckedCompanyId = companyArray.indexOf(company.target.name);
+    let unCheckedCompanyId = companyArray.indexOf(company.target.value);
     companyArray.splice(unCheckedCompanyId, 1);
     this.setState({ selectedCompany: companyArray, selectedPage: 1 }, () => {
       this.approvedIdCreate();
@@ -228,7 +221,6 @@ class Filter extends Component {
   };
 
   handlePriceChange = (event) => {
-    console.log(event.target.value);
     if (event.target.name == "min") {
       this.setState({ minPrice: event.target.value }, () => {
         this.findByPrice();
@@ -383,140 +375,160 @@ class Filter extends Component {
   render() {
     return (
       <div>
-        <div className={style.section}>
-          <div className={style.row}>
-            <div >
-              <div className={style.aside}>
-                <h3>Companies</h3>
-                <div>
-                  {this.state.companyList.map((elem, index) => {
-                    return (
-                      <div key={index}>
-                        <FormControlLabel
-                          control={
-                            <Checkbox
-                              color="primary"
-                              onChange={this.handleCompanySelect.bind(this)}
-                              name={elem}
-                            />
-                          }
-                          label={elem}
-                        />
-                      </div>
-                    );
-                  })}
+        <div className="section">
+          <div className="container">
+            <div className="row">
+              <div id="aside" className="col-md-3">
+                <div className="aside">
+                  <h3 className="aside-title">Companies</h3>
+                  <div className="checkbox-filter">
+                    {this.state.companyList.map((elem, index) => {
+                      return (
+                        <div className="input-checkbox" key={index}>
+                          <input
+                            type="checkbox"
+                            id={"category-" + index}
+                            name={elem}
+                            value={elem}
+                            onChange={this.handleCompanySelect.bind(this)}
+                          ></input>
+                          <label htmlFor={"category-" + index}>
+                            <span></span>
+                            {elem}
+                            {/* <small>(740)</small> */}
+                          </label>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
+
+                <div className="aside">
+                  <h3 className="aside-title">Price</h3>
+                  <div className="price-filter">
+                    <div id="price-slider"></div>
+                    <div className="input-number price-min">
+                      <input
+                        onBlur={this.handlePriceChange.bind(this)}
+                        placeholder="Min price"
+                        name="min"
+                        id="price-min"
+                        type="number"
+                      ></input>
+                      {/* <span className="qty-up">+</span>
+                      <span className="qty-down">-</span> */}
+                    </div>
+                    <span>-</span>
+                    <div className="input-number price-max">
+                      <input
+                        onBlur={this.handlePriceChange.bind(this)}
+                        name="max"
+                        id="price-max"
+                        type="number"
+                        placeholder="Max price"
+                      ></input>
+                      {/* <span className="qty-up">+</span>
+                      <span className="qty-down">-</span> */}
+                    </div>
+                  </div>
+                </div>
+{/* 
+                <div className="aside">
+                  <h3 className="aside-title">Brand</h3>
+                  <div className="checkbox-filter"> */}
+                    {/* {this.state.phoneList.map((elem, index) => {
+                      return (
+                        <div className="input-checkbox">
+                          <input type="checkbox" id="brand-1"></input>
+                          <label for="brand-1">
+                            <span></span>
+                            {elem}
+                            <small>(578)</small>
+                          </label>
+                        </div>
+                      );
+                    })} */}
+                  {/* </div>
+                </div> */}
               </div>
 
-              
-                <h3 className="aside-title">Price</h3>
-                <div className={style.priceSlider}>
-                  <div className="input-number price-min">
-                    <TextField
-                      id="price-min"
-                      label="Min price"
-                      variant="outlined"
-                      type="number"
-                      size="small"
-                      name="min"
-                      onBlur={this.handlePriceChange.bind(this)}
-                    />
-                  </div>
-                  <span>-</span>
-                  <div className="input-number price-max">
-                    <TextField
-                      id="price-max"
-                      label="Max price"
-                      type="number"
-                      variant="outlined"
-                      size="small"
-                      name="max"
-                      onBlur={this.handlePriceChange.bind(this)}
-                    />
-                  </div>
-                </div>
-              
-            </div>
+              <div id="store" className="col-md-9">
+                <div className="store-filter clearfix">
+                  <div className="store-sort">
+                    <label>
+                      Sort By:
+                      <select
+                        onChange={this.itemSortChange.bind(this)}
+                        className={filterStyle.sortSelect}
+                      >
+                        <option value="0">-------</option>
+                        <option value="PriceUp">Price up to down</option>
+                        <option value="PriceDown">Price down to up</option>
+                      </select>
+                    </label>
 
-            <div id="store" className="col-md-9">
-              <div className={style.storeFilter}>
-            
-                <div className={style.storeSort}>
-                  <div >    <FormControl >
-                    <InputLabel id="demo-simple-select-label">Sort</InputLabel>
-                    <Select
-                    onChange={this.itemSortChange.bind(this)}
-                     
+                    <label>
+                      Show:
+                      <select
+                        onChange={this.itemCountChange.bind(this)}
+                        className={filterStyle.sortSelect}
+                      >
+                        <option value="6">6</option>
+                        <option value="9">9</option>
+                      </select>
+                    </label>
+                  </div>
+                  <ul className="store-grid">
+                    <li
+                      onClick={this.viewTypeChange.bind(this, "list")}
+                      className={
+                        this.state.viewType == "list" ? "active" : null
+                      }
                     >
-                      <MenuItem value="0">None</MenuItem>
-                      <MenuItem value="PriceUp">Price up to down</MenuItem>
-                      <MenuItem value="PriceDown">Price down to up</MenuItem>
-                    </Select>
-                  </FormControl></div>
-                 
-
-                
-                  <FormControl >
-                    <InputLabel id="demo-simple-select-label">Sort</InputLabel>
-                    <Select
-                     onChange={this.itemCountChange.bind(this)}
-                     
+                      <i className="fa fa-th"></i>
+                    </li>
+                    <li
+                      onClick={this.viewTypeChange.bind(this, "string")}
+                      className={
+                        this.state.viewType == "string" ? "active" : null
+                      }
                     >
-                      
-                      <MenuItem value={6}>6</MenuItem>
-                      <MenuItem value={9}>9</MenuItem>
-                    </Select>
-                  </FormControl>
-                  
+                      <i className="fa fa-th-list"></i>
+                    </li>
+                  </ul>
                 </div>
-                <ul className={style.sortType}>
-                  <li
-                    onClick={this.viewTypeChange.bind(this, "list")}
-                    className={
-                      this.state.viewType == "list" ? style.active : null
-                    }
-                  >
-                    <i className="fa fa-th"></i>
-                  </li>
-                  <li
-                    onClick={this.viewTypeChange.bind(this, "string")}
-                    className={
-                      this.state.viewType == "string" ? style.active : null
-                    }
-                  >
-                    <i className="fa fa-th-list"></i>
+
+                <div className={filterStyle.cs}>
+                  <ProductShow
+                    viewType={this.state.viewType}
+                    products={this.state.approvedId}
+                  />
+                </div>
+
+                <ul className="store-pagination">
+                  {this.state.pageNumber.map((page, index) => {
+                    return (
+                      <li
+                        className={
+                          this.state.selectedPage == page + 1 ? "active" : null
+                        }
+                        key={index}
+                      >
+                        <a onClick={this.changePage.bind(this, page + 1)}>
+                          {" "}
+                          {page + 1}
+                        </a>
+                      </li>
+                    );
+                  })}
+
+                  <li>
+                    <a href="#">
+                      <i className="fa fa-angle-right"></i>
+                    </a>
                   </li>
                 </ul>
               </div>
-
-              <div >
-                <ProductShow
-                  viewType={this.state.viewType}
-                  products={this.state.approvedId}
-                />
-              </div>
-
-              <ul className={style.pagination}>
-                {this.state.pageNumber.map((page, index) => {
-                  return (
-                    <li
-                      className={
-                        this.state.selectedPage == page + 1
-                          ? style.active
-                          : null
-                      }
-                      key={index}
-                    >
-                      <a onClick={this.changePage.bind(this, page + 1)}>
-                        {" "}
-                        {page + 1}
-                      </a>
-                    </li>
-                  );
-                })}
-
-               
-              </ul>
             </div>
           </div>
         </div>

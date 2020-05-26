@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import Product from './Product';
-import style from '../Shop/itemFilter/filter.module.scss'
+import s from './Products.module.css'
 
 const Products =(props)=> {
     const [product, setProduct]=useState([props])
    
     return(
-        <div >
+        <div className={s.root} >
             {product.map((elem,index) =>{
                 
                 return(

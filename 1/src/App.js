@@ -10,7 +10,7 @@ import Home from "./Components/Home/Home";
 import Profile from "./Components/Header/Profile/Profile";
 import Header from "./Components/Header/Header";
 import Shop from "./Components/Shop/Shop";
-
+import About from "./Components/About";
 import CheckoutPage from "./Components/CheckoutPage/CheckoutPage";
 
 
@@ -29,7 +29,7 @@ class App extends Component {
     <Header/>
       <Switch>
         <Route path="/checkout" component={CheckoutPage}/> 
-        
+        <Route path="/About" component={About}/> 
         <Route
           path="/shop"
           exact
