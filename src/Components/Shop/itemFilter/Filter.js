@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import style from "./filter.module.scss";
-import Data from "../../../data";
+
 import ProductShow from "./ProductShow";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -10,8 +10,10 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import fire from "../../../backend/config"
 class Filter extends Component {
   state = {
+    data:[],
     companyList: [],
     priceList: [],
     approvedId: [],
@@ -26,8 +28,23 @@ class Filter extends Component {
     itemCount: 6,
   };
   componentDidMount = () => {
-    this.companyListCreate();
-    this.approvedIdCreate();
+    let db=[]
+    fire
+    .database()
+    .ref("/data")
+    .once("value")
+    .then((snapshot) => {
+      db = snapshot.val();
+    })
+    .then(() => {
+    this.setState({data:db},()=>{
+      this.companyListCreate();
+      this.approvedIdCreate();
+    })
+  })
+  
+
+   
 
     localStorage.setItem("approvedId", []);
     setInterval(this.filterListener, 500);
@@ -35,7 +52,7 @@ class Filter extends Component {
 
   companyListCreate = () => {
     let list = [];
-    Data.map((Phone) => {
+   this.state.data.map((Phone) => {
       if (list.includes(Phone.company) === false) {
         list.push(Phone.company);
       }
@@ -47,7 +64,7 @@ class Filter extends Component {
   findByPrice = () => {
     let id = [];
 
-    Data.map((Phone) => {
+    this.state.data.map((Phone) => {
       if (
         this.state.maxPrice > 0 &&
         this.state.minPrice > 0 &&
@@ -95,7 +112,7 @@ class Filter extends Component {
       this.state.priceList.length == 0
     ) {
       this.state.selectedCompany.map((Company) => {
-        Data.map((Phone) => {
+        this.state.data.map((Phone) => {
           if (Phone.company == Company) {
             id.push(Phone.id);
           }
@@ -112,7 +129,7 @@ class Filter extends Component {
       this.state.priceList.length > 0
     ) {
       this.state.priceList.map((price) => {
-        Data.map((Phone) => {
+        this.state.data.map((Phone) => {
           if (Phone.id == price) {
             id.push(Phone.id);
           }
@@ -128,7 +145,7 @@ class Filter extends Component {
       this.state.selectedCompany.length > 0 &&
       this.state.priceList.length > 0
     ) {
-      Data.map((Phone) => {
+      this.state.data.map((Phone) => {
         this.state.selectedCompany.map((Company) => {
           if (Company == Phone.company) {
             this.state.priceList.map((Price) => {
@@ -148,7 +165,7 @@ class Filter extends Component {
       });
       return;
     }
-    Data.map((Phone) => {
+    this.state.data.map((Phone) => {
       id.push(Phone.id);
     });
     this.setState({ approvedId: id }, () => {
@@ -265,30 +282,30 @@ class Filter extends Component {
       newApprovedId.sort((a, b) => {
         console.log(a, b);
         if (
-          Number(Data[Number(a)].configurationAndPrice[0][1]) -
-            Number(Data[Number(b)].configurationAndPrice[0][1]) <
+          Number(this.state.data[Number(a)].configurationAndPrice[0][1]) -
+            Number(this.state.data[Number(b)].configurationAndPrice[0][1]) <
           0
         ) {
           console.log(
-            Number(Data[Number(a)].configurationAndPrice[0][1]) -
-              Number(Data[Number(b)].configurationAndPrice[0][1])
+            Number(this.state.data[Number(a)].configurationAndPrice[0][1]) -
+              Number(this.state.data[Number(b)].configurationAndPrice[0][1])
           );
           return 1;
         }
         if (
-          Number(Data[Number(a)].configurationAndPrice[0][1]) -
-            Number(Data[Number(b)].configurationAndPrice[0][1]) >
+          Number(this.state.data[Number(a)].configurationAndPrice[0][1]) -
+            Number(this.state.data[Number(b)].configurationAndPrice[0][1]) >
           0
         ) {
           console.log(
-            Number(Data[Number(a)].configurationAndPrice[0][1]) -
-              Number(Data[Number(b)].configurationAndPrice[0][1])
+            Number(this.state.data[Number(a)].configurationAndPrice[0][1]) -
+              Number(this.state.data[Number(b)].configurationAndPrice[0][1])
           );
           return -1;
         }
         if (
-          Number(Data[Number(a)].configurationAndPrice[0][1]) -
-            Number(Data[Number(b)].configurationAndPrice[0][1]) ==
+          Number(this.state.data[Number(a)].configurationAndPrice[0][1]) -
+            Number(this.state.data[Number(b)].configurationAndPrice[0][1]) ==
           0
         ) {
           return 0;
@@ -333,22 +350,22 @@ class Filter extends Component {
       newApprovedId.sort((a, b) => {
         console.log(a, b);
         if (
-          Number(Data[Number(a)].configurationAndPrice[0][1]) -
-            Number(Data[Number(b)].configurationAndPrice[0][1]) >
+          Number(this.state.data[Number(a)].configurationAndPrice[0][1]) -
+            Number(this.state.data[Number(b)].configurationAndPrice[0][1]) >
           0
         ) {
           return 1;
         }
         if (
-          Number(Data[Number(a)].configurationAndPrice[0][1]) -
-            Number(Data[Number(b)].configurationAndPrice[0][1]) <
+          Number(this.state.data[Number(a)].configurationAndPrice[0][1]) -
+            Number(this.state.data[Number(b)].configurationAndPrice[0][1]) <
           0
         ) {
           return -1;
         }
         if (
-          Number(Data[Number(a)].configurationAndPrice[0][1]) -
-            Number(Data[Number(b)].configurationAndPrice[0][1]) ==
+          Number(this.state.data[Number(a)].configurationAndPrice[0][1]) -
+            Number(this.state.data[Number(b)].configurationAndPrice[0][1]) ==
           0
         ) {
           return 0;
@@ -382,7 +399,9 @@ class Filter extends Component {
   };
   render() {
     return (
+      
       <div>
+        
         <div className={style.section}>
           <div className={style.row}>
             <div >
@@ -457,7 +476,7 @@ class Filter extends Component {
 
                 
                   <FormControl >
-                    <InputLabel id="demo-simple-select-label">Sort</InputLabel>
+                    <InputLabel id="demo-simple-select-label">Show</InputLabel>
                     <Select
                      onChange={this.itemCountChange.bind(this)}
                      
@@ -490,6 +509,7 @@ class Filter extends Component {
               </div>
 
               <div >
+
                 <ProductShow
                   viewType={this.state.viewType}
                   products={this.state.approvedId}

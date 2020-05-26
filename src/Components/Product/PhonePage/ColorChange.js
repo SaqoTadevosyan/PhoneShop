@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import style from"./Phone.module.css"
+import style from"./Phone.module.scss"
 class ColorChange extends Component {
     state = { 
         selected:false

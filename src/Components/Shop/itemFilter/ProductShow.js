@@ -1,14 +1,24 @@
 import React, { Component } from "react";
 import style from "./filter.module.scss"
 import Products from "../../Product/Products";
+import fire from "../../../backend/config"
 
-import OurProducts from "../../../data";
 class ProductShow extends Component {
   state = {
-    product: OurProducts,
+    product: [],
     idlist: [],
   };
   componentDidMount = () => {
+    let db=[]
+    fire
+    .database()
+    .ref("/data")
+    .once("value")
+    .then((snapshot) => {
+      db = snapshot.val();
+    })
+    .then(() => {
+   this.setState({product:db})})
     setInterval(() => {
       this.idListUpdate();
     }, 500);

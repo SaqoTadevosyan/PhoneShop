@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import shopingcartstyle from "./shopingcart.module.scss"
 import ShopingItem from './ShopingItem';
-import Data from "../../../../data"
+import fire from "../../../../backend/config"
 class Shopingcart extends Component {
     state = {  
         toggle:true,
         product:[],
+        data:[],
         config:"",
         price:0
     }
@@ -15,6 +16,16 @@ class Shopingcart extends Component {
         this.setState({toggle:!tmp})
     }
     componentDidMount(){
+      let db=[]
+    fire
+    .database()
+    .ref("/data")
+    .once("value")
+    .then((snapshot) => {
+      db = snapshot.val();
+    })
+    .then(() => {
+   this.setState({data:db})})
       setInterval(this.itemSet,500)
 
     }
@@ -41,7 +52,7 @@ class Shopingcart extends Component {
         }
         let tmp=0
       this.state.product.map(elem=>{
-        Data.map(item=>{
+        this.state.data.map(item=>{
           if(elem[0]==item.id){
             
             item.configurationAndPrice.map((i)=>{
@@ -56,12 +67,12 @@ this.setState({price:tmp})
 
           }
         })
-      })}
-     
+      }
+    )
     }
 
 
-    
+  }
 
     render() {
         return (

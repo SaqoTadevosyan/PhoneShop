@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import shopingcartstyle from "./shopingcart.module.scss"
-import Data from "../../../../data.js"
+import fire from "../../../../backend/config"
 class ShopingItem extends Component {
     state = { 
+        data:[],
         product:[],
         price:0
      }
@@ -13,6 +14,18 @@ class ShopingItem extends Component {
         localStorage.setItem("product",JSON.stringify(list))
     }
 
+    componentDidMount=()=>{
+        let db=[]
+    fire
+    .database()
+    .ref("/data")
+    .once("value")
+    .then((snapshot) => {
+      db = snapshot.val();
+    })
+    .then(() => {
+   this.setState({data:db})})
+    }
 imgChange=(elem)=>{
 return elem
 }
@@ -21,7 +34,7 @@ return elem
         return (
             
             <div className={shopingcartstyle.productWidget}>
-                {Data.map((elem,index) => {
+                {this.state.data.map((elem,index) => {
           if (elem.id == this.props.item[0]) {
              
             return (

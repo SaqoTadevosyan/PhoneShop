@@ -1,11 +1,24 @@
 import React, { Component } from "react";
+import fire from "../../backend/config"
 
-import Data from "../../data.js";
 class CheckoutItem extends Component {
   state = {
+    data:[],
     product: [],
     price: 0,
   };
+  componentDidMount=()=>{
+    let db=[]
+    fire
+    .database()
+    .ref("/data")
+    .once("value")
+    .then((snapshot) => {
+      db = snapshot.val();
+    })
+    .then(() => {
+   this.setState({data:db})})
+  }
   imgChange=(elem)=>{
     return elem
     }
@@ -14,7 +27,7 @@ class CheckoutItem extends Component {
             return (
                 
                 <div >
-                    {Data.map(elem => {
+                    {this.state.data.map(elem => {
               if (elem.id == this.props.item[0]) {
                  
                 return (

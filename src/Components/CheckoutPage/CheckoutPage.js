@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import Data from "../../data";
+
 import fire from "../../backend/config"
 
 import CheckoutItem from "./CheckoutItem"
 class CheckoutPage extends Component {
   state = {
+	  data:[],
    product:[],
    price:0,
    adressType:true
@@ -12,6 +13,16 @@ class CheckoutPage extends Component {
   };
  componentDidMount=()=>{
 	this.itemSet()
+	let db=[]
+    fire
+    .database()
+    .ref("/data")
+    .once("value")
+    .then((snapshot) => {
+      db = snapshot.val();
+    })
+    .then(() => {
+   this.setState({data:db})})
 	setTimeout(()=>{this.userInfo()},2000) 
  }
 
@@ -40,7 +51,7 @@ class CheckoutPage extends Component {
 	  }
 	  let tmp=0
 	this.state.product.map(elem=>{
-	  Data.map(item=>{
+	 this.state.data.map(item=>{
 		if(elem[0]==item.id){
 		  
 		  item.configurationAndPrice.map((i)=>{
