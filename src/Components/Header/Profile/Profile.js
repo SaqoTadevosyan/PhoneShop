@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import ProfileStyle from "./Profile.module.scss";
 import fire from "../../../backend/config";
 import avatarStyle from "./avatar.module.css"
@@ -65,7 +65,7 @@ componentDidMount(){
   navClick = (event) => {
     let name = event.target.name;
 console.log(name)
-if(name=="profile"){
+if(name==="profile"){
   this.setState({
     profile: true,
     payment: false,
@@ -76,7 +76,7 @@ if(name=="profile"){
 }
   
 
-     if(name=="payment"){
+     if(name==="payment"){
        this.setState({
           profile: false,
           payment: true,
@@ -84,7 +84,7 @@ if(name=="profile"){
           settings: false,
           change:false,
         });}
-      if(name=="subscription"){
+      if(name==="subscription"){
         this.setState({
           profile: false,
           payment: false,
@@ -93,7 +93,7 @@ if(name=="profile"){
           change:false,
         });}
 
-        if(name=="privacy"){
+        if(name==="privacy"){
         this.setState({
           profile: false,
           payment: false,
@@ -101,7 +101,7 @@ if(name=="profile"){
           settings: false,
           change:false,
         });}
-        if(name=="settings"){
+        if(name==="settings"){
         this.setState({
           profile: false,
           payment: false,
@@ -115,19 +115,19 @@ if(name=="profile"){
 
   handleChange=(event)=>{
     
-    if(event.target.name=="firstName"){
+    if(event.target.name==="firstName"){
       this.setState({newFirstname:event.target.value})
     }
-    if(event.target.name=="lastName"){
+    if(event.target.name==="lastName"){
       this.setState({newLastname:event.target.value})
     }
-    if(event.target.name=="phoneNumber"){
+    if(event.target.name==="phoneNumber"){
       this.setState({newPhoneNumber:event.target.value})
     }
-    if(event.target.name=="zipCode"){
+    if(event.target.name==="zipCode"){
       this.setState({newZipcode:event.target.value})
     }
-    if(event.target.name=="street"){
+    if(event.target.name==="street"){
       this.setState({newStreet:event.target.value})
     }
   }
@@ -154,17 +154,18 @@ if(name=="profile"){
         <div className={ProfileStyle.leftbox}>
           <nav className={ProfileStyle.nav}>
             <a
+              href=""
               name="profile"
               onClick={this.navClick.bind(this)}
               className={ ProfileStyle.active}
             >
               <i className="fa fa-user"></i>
             </a>
-            <a name="payment" onClick={this.navClick.bind(this)}>
+            <a href="" name="payment" onClick={this.navClick.bind(this)}>
               <i className="fa fa-credit-card"></i>
             </a>
           
-            <a name="settings" onClick={this.navClick.bind(this)}>
+            <a href="" name="settings" onClick={this.navClick.bind(this)}>
               <i className="fa fa-cog"></i>
             </a>
           </nav>
@@ -176,7 +177,7 @@ if(name=="profile"){
     
   <div className={avatarStyle.profile_pic} >
       <span className={(avatarStyle.glyphicon, avatarStyle.glyphicon_camera)} ></span>
-      <img className={avatarStyle.profile_pic} src={this.state.photo}></img>
+      <img alt="" className={avatarStyle.profile_pic} src={this.state.photo}></img>
      
   </div>
   
@@ -208,7 +209,7 @@ if(name=="profile"){
     <label htmlFor="fileToUpload">
   <div className={avatarStyle.profile_pic} >
       <span className={(avatarStyle.glyphicon, avatarStyle.glyphicon_camera)} ></span>
-      <img className={avatarStyle.profile_pic} src={this.state.photo}></img>
+      <img alt="" className={avatarStyle.profile_pic} src={this.state.photo}></img>
       <span>Click for change Image</span>
   </div>
   </label>

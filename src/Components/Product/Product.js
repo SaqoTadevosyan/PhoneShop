@@ -21,7 +21,7 @@ class Product extends Component {
   render() {
     return (
       <div>
-        {this.props.viewType == "list" ? (
+        {this.props.viewType === "list" ? (
           <div className={style.container} onClick={() =>
             this.props.history.push("/" + this.props.product.item.id)
           }>
@@ -34,7 +34,7 @@ class Product extends Component {
                     {this.props.product.item.company}
                   </p>
                   <h3 >
-                    <a href="#">{this.props.product.item.name}</a>
+                    <a href="">{this.props.product.item.name}</a>
                   </h3>
                   <h4 className="product-price">
                     ${this.props.product.item.configurationAndPrice[0][1]}{" "}

@@ -32,7 +32,7 @@ class Register extends Component {
 
   validTestAndSave = (event, type) => {
     let value = event.target.value;
-    if (type == "name") {
+    if (type === "name") {
       let err = this.state.error;
       err.firstname = "Please input firstname";
       if (value.length < 1) {
@@ -43,7 +43,7 @@ class Register extends Component {
       this.setState({ firstname: event.target.value });
       return
     }
-    if (type == "lastname") {
+    if (type === "lastname") {
       let err = this.state.error;
       if (value.length < 1) {
         err.lastname = "Please input lastname";
@@ -57,13 +57,13 @@ class Register extends Component {
       console.log(event.target.value)
       return
     }
-    if (type == "email") {
+    if (type === "email") {
       let err = this.state.error;
         err.email = "Please input valid Email";
       if (
         /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(
           event.target.value
-        ) == false 
+        ) === false 
       ) {
         
         
@@ -76,13 +76,13 @@ class Register extends Component {
         return
     }
 
-    if (type == "password") {
+    if (type === "password") {
       let err = this.state.error;
       err.email = "Please input valid Password";
     if (
       /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(
         event.target.value
-      ) == false 
+      ) === false 
     ) {
       
       
@@ -94,13 +94,13 @@ class Register extends Component {
       console.log(event.target.value)
       return
     }
-    if (type == "photo") {
+    if (type === "photo") {
       this.setState({ photo: event.target.value });
       console.log(event.target.value)
       return
     }
     
-    if (type == "street") {
+    if (type === "street") {
       let err = this.state.error;
       if (value.length < 1) {
         err.street = "Please input street";
@@ -114,7 +114,7 @@ class Register extends Component {
       console.log(event.target.value)
       return
     }
-    if (type == "zipcode") {
+    if (type === "zipcode") {
       let err = this.state.error;
       if (value.length < 1) {
         err.zipcode = "Please input zipcode";
@@ -128,7 +128,7 @@ class Register extends Component {
       console.log(event.target.value)
       return
     }
-    if (type == "city") {
+    if (type === "city") {
       let err = this.state.error;
       if (value.length < 1) {
         err.city = "Please input city";
@@ -142,7 +142,7 @@ class Register extends Component {
       console.log(event.target.value)
       return
     }
-    if (type == "country") {
+    if (type === "country") {
       let err = this.state.error;
       if (value.length < 1) {
         err.country = "Please input country";
@@ -156,7 +156,7 @@ class Register extends Component {
       console.log(event.target.value)
       return
     }
-    if (type == "number") {
+    if (type === "number") {
       let err = this.state.error;
       if (value.length < 1) {
         err.number = "Please input phone number";
@@ -393,7 +393,7 @@ class Register extends Component {
                   <label className="container">
                     <p>
                       I do accept the{" "}
-                      <a href="#" className="text">
+                      <a href="" className="text">
                         Terms and Conditions
                       </a>{" "}
                       of your site.

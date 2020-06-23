@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import  { Component } from 'react';
 import "./App.css";
 
-import { BrowserRouter, Route, Switch, Redirect, } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Phone from "./Components/Product/PhonePage/Phone"
 import Register from "./Components/Header/Register/Register"
 import LoginPage from "./Components/Header/Login/LoginPage/LoginPage";
