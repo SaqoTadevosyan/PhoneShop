@@ -153,21 +153,21 @@ if(name==="profile"){
         </div>
         <div className={ProfileStyle.leftbox}>
           <nav className={ProfileStyle.nav}>
-            <a
-              href=""
+            <button
+             
               name="profile"
               onClick={this.navClick.bind(this)}
               className={ ProfileStyle.active}
             >
               <i className="fa fa-user"></i>
-            </a>
-            <a href="" name="payment" onClick={this.navClick.bind(this)}>
+            </button>
+            <button name="payment" onClick={this.navClick.bind(this)}>
               <i className="fa fa-credit-card"></i>
-            </a>
+            </button>
           
-            <a href="" name="settings" onClick={this.navClick.bind(this)}>
+            <button name="settings" onClick={this.navClick.bind(this)}>
               <i className="fa fa-cog"></i>
-            </a>
+            </button>
           </nav>
         </div>
         <div className={ProfileStyle.rightbox}>

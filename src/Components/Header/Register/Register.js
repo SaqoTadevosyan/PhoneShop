@@ -393,9 +393,9 @@ class Register extends Component {
                   <label className="container">
                     <p>
                       I do accept the{" "}
-                      <a href="" className="text">
+                      
                         Terms and Conditions
-                      </a>{" "}
+                      
                       of your site.
                     </p>
                     <input type="checkbox" name="checkbox"></input>

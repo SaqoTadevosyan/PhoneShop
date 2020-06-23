@@ -13,7 +13,7 @@ export default function Home(){
       commodi placeat ea itaque modi corrupti corporis nam voluptas aut
       reprehenderit eaque culpa.
     </p>
-    <a href="#" className={style.btn}>Read More</a>
+    
   </div>
   <img src="https://ae01.alicdn.com/kf/Uc4a4edbd136c418b9fcba4090caa3361l/Mobile-Xiaomi-Smartphones-6941059630869-Smartphone-Xiaomi-Redmi-Note-8-4G-64-GB-4-GB-RAM-Dual.jpg" alt="" />
 </div>

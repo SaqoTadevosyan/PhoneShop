@@ -35,17 +35,18 @@ class ProductShow extends Component {
     
     
 return(
-<div className={this.props.viewType=="list" ?  style.app:null}>
+<div className={this.props.viewType==="list" ?  style.app:null}>
 { this.state.idlist.map((it) => {
   
    return   this.state.product.map((elem) => {
-        if (it == elem.id) {
+        if (it === elem.id) {
           return (
             
               <Products viewType={this.props.viewType} key={elem.id} item={elem} />
             
           );
         }
+        return
       });
     })}
 

@@ -36,15 +36,15 @@ class LoginPage extends Component {
     let type = event.target.type;
     let value = event.target.value;
     let object = this.state.login;
-    switch (type) {
-      case "email":
-        object.email = value;
-        this.setState({ login: object });
-
-      case "password":
-        object.password = value;
-        this.setState({ login: object });
-    }
+ if(type==="email"){
+  object.email = value;
+  this.setState({ login: object });
+ }
+ if(type==="passsword"){
+  object.password = value;
+  this.setState({ login: object });
+ }
+  
     
   };
   render() {
@@ -54,12 +54,12 @@ class LoginPage extends Component {
       <div className="container64">
       <div className="form">
         <div className="sign-in-section">
-          <h6></h6>
+          
           <h1>Log in</h1>
           <ul>
-            <li className="socialIcon"><a href=""><img src="https://cdn3.iconfinder.com/data/icons/capsocial-round/500/facebook-512.png"></img></a></li>
-            <li className="socialIcon"><a href=""><img src="https://clipartart.com/images/vk-icon-clipart.jpg"></img></a></li>
-            <li className="socialIcon"><a href=""><img src="https://cdn0.iconfinder.com/data/icons/social-network-9/50/2-512.png"></img></a></li>
+            <li className="socialIcon"><img alt="a" src="https://cdn3.iconfinder.com/data/icons/capsocial-round/500/facebook-512.png"></img></li>
+            <li className="socialIcon"><img alt="a" src="https://clipartart.com/images/vk-icon-clipart.jpg"></img></li>
+            <li className="socialIcon"><img alt="a" src="https://cdn0.iconfinder.com/data/icons/social-network-9/50/2-512.png"></img></li>
           </ul>
           <p>or use your email</p>
           
@@ -77,7 +77,7 @@ class LoginPage extends Component {
                 <input id="rememberMe" type="checkbox" className="checkbox" />
                 <label for="rememberMe">Remember Me</label>
               </div>
-              <a href="#">Forgot Password?</a>
+              <button href="#">Forgot Password?</button>
             </div>
             
             <div className="form-field">
@@ -85,8 +85,8 @@ class LoginPage extends Component {
             </div>
          
           <div className="links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms & Conditions</a> 
+            <button>Privacy Policy</button>
+            <button>Terms & Conditions</button> 
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Product from './Product';
-import style from '../Shop/itemFilter/filter.module.scss'
+
 
 const Products =(props)=> {
     const [product, setProduct]=useState([props])

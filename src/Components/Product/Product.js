@@ -34,7 +34,7 @@ class Product extends Component {
                     {this.props.product.item.company}
                   </p>
                   <h3 >
-                    <a href="">{this.props.product.item.name}</a>
+                    <button href="">{this.props.product.item.name}</button>
                   </h3>
                   <h4 className="product-price">
                     ${this.props.product.item.configurationAndPrice[0][1]}{" "}
